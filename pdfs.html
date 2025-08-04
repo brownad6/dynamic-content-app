@@ -7,6 +7,24 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
     h1 { text-align: center; }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 16px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #155ab6;
+    }
+
     ul { list-style: none; padding-left: 0; }
     li { margin: 10px 0; }
     a { color: #1a73e8; text-decoration: none; }
@@ -15,45 +33,39 @@
 </head>
 <body>
 
+  <button class="back-button" onclick="goBack()">← Back</button>
+
   <h1>Leadership With Kristi</h1>
   <ul id="pdf-list"></ul>
 
-  <!-- Fetch PDF list from JSON -->
   <script>
-  const DATA_URL = "https://brownad6.github.io/dynamic-content-app/content.json";
+    function goBack() {
+      window.history.back();
+    }
 
-  fetch(DATA_URL)
-    .then(response => response.json())
-    .then(data => {
-      const pdfList = document.getElementById('pdf-list');
-      pdfList.innerHTML = ''; // Clear previous
+    const DATA_URL = "https://brownad6.github.io/dynamic-content-app/content.json";
 
-      data.pdfs.forEach(pdf => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = pdf.url;
-        a.target = '_blank';
-        a.innerText = pdf.title;
-        li.appendChild(a);
-        pdfList.appendChild(li);
+    fetch(DATA_URL)
+      .then(response => response.json())
+      .then(data => {
+        const pdfList = document.getElementById('pdf-list');
+        pdfList.innerHTML = ''; // Clear previous
+
+        data.pdfs.forEach(pdf => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = pdf.url;
+          a.target = '_blank';
+          a.innerText = pdf.title;
+          li.appendChild(a);
+          pdfList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading PDFs:', error);
+        document.getElementById('pdf-list').innerText = 'Failed to load PDFs.';
       });
-    })
-    .catch(error => {
-      console.error('Error loading PDFs:', error);
-      document.getElementById('pdf-list').innerText = 'Failed to load PDFs.';
-    });
-</script>
-
+  </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
