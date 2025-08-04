@@ -51,24 +51,12 @@
     <ul id="link-list"></ul>
   </div>
 
-  <script>
-    // Replace this with your real hosted JSON URL later
-    const DATA_URL = "https://brownad6.github.io/dynamic-content-app/"; // temp placeholder
+ <script>
+  const DATA_URL = "https://brownad6.github.io/dynamic-content-app/contents.json";
 
-    // Simulate actual structured content
-    const dynamicContent = {
-      text: "Welcome to the dynamic content app!",
-      image: "https://via.placeholder.com/600x300",
-      pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-      links: [
-        "https://www.google.com",
-        "https://www.apple.com",
-        "https://www.openai.com"
-      ]
-    };
-
-    // Simulate fetching content (you'll replace with fetch(DATA_URL)... in real use)
-    function loadContent() {
+  fetch(DATA_URL)
+    .then(response => response.json())
+    .then(dynamicContent => {
       // Update text
       document.getElementById("text-content").innerText = dynamicContent.text;
 
@@ -80,6 +68,7 @@
 
       // Update links list
       const linkList = document.getElementById("link-list");
+      linkList.innerHTML = ""; // clear existing items if any
       dynamicContent.links.forEach(link => {
         const li = document.createElement("li");
         const a = document.createElement("a");
@@ -89,11 +78,17 @@
         li.appendChild(a);
         linkList.appendChild(li);
       });
-    }
+    })
+    .catch(error => {
+      console.error("Error loading content:", error);
+    });
+</script>
+
 
     // Run on page load
     loadContent();
   </script>
 </body>
 </html>
+
 
