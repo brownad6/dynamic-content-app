@@ -2,8 +2,8 @@
   "page-title": "Kristis App",
   "images": [
     "https://brownad6.github.io/dynamic-content-app/images/background.jpg",
-    "https://brownad6.github.io/dynamic-content-app/images/kristi1.png",
-    "https://brownad6.github.io/dynamic-content-app/images/kristi2.png"
+    "https://brownad6.github.io/dynamic-content-app/images/kristi1.jpg",
+    "https://brownad6.github.io/dynamic-content-app/images/kristi2.jpg"
   ],
   "pdf": "https://brownad6.github.io/dynamic-content-app/pdfs/sample.pdf",
   "links": [
@@ -12,6 +12,7 @@
     "https://www.openai.com"
   ]
 }
+
 
 
 
