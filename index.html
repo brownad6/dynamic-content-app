@@ -3,92 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dynamic iOS App Content</title>
+  <title>Kristi's App</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       background: #f9f9f9;
     }
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
+
+    h1 {
+      text-align: center;
+    }
+
+    .image-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+      padding: 20px 0;
+    }
+
+    .image-slider img {
+      flex: 0 0 auto;
+      width: 80%;
+      max-width: 600px;
       border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      scroll-snap-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    h2 {
-      margin-top: 0;
+
+    .links {
+      margin-top: 30px;
     }
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    a {
+
+    .links a {
+      display: block;
       color: #1a73e8;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h2>Text Content</h2>
-    <p id="text-content">Loading...</p>
+  <h1 id="page-title">Loading...</h1>
+
+  <div class="image-slider" id="image-slider">
+    <!-- Images will load here -->
   </div>
 
-  <div class="card">
-    <h2>Image</h2>
-    <img id="image-content" src="" alt="Dynamic Image" />
+  <div class="links" id="link-list">
+    <!-- Links will appear here -->
   </div>
 
-  <div class="card">
-    <h2>PDF Download</h2>
-    <a id="pdf-link" href="#" target="_blank">Download PDF</a>
-  </div>
+  <script>
+    const DATA_URL = "https://brownad6.github.io/dynamic-content-app/contents.json";
 
-  <div class="card">
-    <h2>Useful Links</h2>
-    <ul id="link-list"></ul>
-  </div>
+    fetch(DATA_URL)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("page-title").innerText = data.text;
 
- <script>
-  const DATA_URL = "https://brownad6.github.io/dynamic-content-app/contents.json";
+        // Load images
+        const slider = document.getElementById("image-slider");
+        data.images.forEach(imgUrl => {
+          const img = document.createElement("img");
+          img.src = imgUrl;
+          slider.appendChild(img);
+        });
 
-  fetch(DATA_URL)
-    .then(response => response.json())
-    .then(dynamicContent => {
-      // Update text
-      document.getElementById("text-content").innerText = dynamicContent.text;
-
-      // Update image
-      document.getElementById("image-content").src = dynamicContent.image;
-
-      // Update PDF link
-      document.getElementById("pdf-link").href = dynamicContent.pdf;
-
-      // Update links list
-      const linkList = document.getElementById("link-list");
-      linkList.innerHTML = ""; // clear existing items if any
-      dynamicContent.links.forEach(link => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = link;
-        a.target = "_blank";
-        a.innerText = link;
-        li.appendChild(a);
-        linkList.appendChild(li);
+        // Load links
+        const linkList = document.getElementById("link-list");
+        data.links.forEach(link => {
+          const a = document.createElement("a");
+          a.href = link;
+          a.target = "_blank";
+          a.innerText = link;
+          linkList.appendChild(a);
+        });
+      })
+      .catch(error => {
+        console.error("Error loading content:", error);
       });
-    })
-    .catch(error => {
-      console.error("Error loading content:", error);
-    });
-</script>
-
-
-    // Run on page load
-    loadContent();
   </script>
+
 </body>
 </html>
-
-
