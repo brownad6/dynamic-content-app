@@ -78,11 +78,13 @@
 
         // Load links
         const linkList = document.getElementById("link-list");
-        data.links.forEach(link => {
+        linkList.innerHTML = ""; // Clear existing links
+        
+        data.links.forEach(linkObj => {
           const a = document.createElement("a");
-          a.href = link;
+          a.href = linkObj.url;
           a.target = "_blank";
-          a.innerText = link;
+          a.innerText = linkObj.name;
           linkList.appendChild(a);
         });
       })
@@ -93,6 +95,7 @@
 
 </body>
 </html>
+
 
 
 
