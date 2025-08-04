@@ -18,20 +18,32 @@
   <h1>Leadership With Kristi</h1>
   <ul id="pdf-list"></ul>
 
+//Fetch pdf list from json 
   <script>
-    // You can hardcode your PDFs here or fetch dynamically from JSON again
+  const DATA_URL = "https://brownad6.github.io/dynamic-content-app/content.json";
 
-    const pdfs = [
-      {
-        title: "Most Important",
-        url: "https://brownad6.github.io/dynamic-content-app/pdfs/temp.pdf"
-      },
-      {
-        title: "Registration Information",
-        url: "https://brownad6.github.io/dynamic-content-app/pdfs/Registration.pdf"
-      }
-      // Add more PDFs here if you want
-    ];
+  fetch(DATA_URL)
+    .then(response => response.json())
+    .then(data => {
+      const pdfList = document.getElementById('pdf-list');
+      pdfList.innerHTML = ''; // Clear previous
+
+      data.pdfs.forEach(pdf => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = pdf.url;
+        a.target = '_blank';
+        a.innerText = pdf.title;
+        li.appendChild(a);
+        pdfList.appendChild(li);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading PDFs:', error);
+      document.getElementById('pdf-list').innerText = 'Failed to load PDFs.';
+    });
+</script>
+
 
     const pdfList = document.getElementById('pdf-list');
     pdfs.forEach(pdf => {
@@ -48,6 +60,7 @@
 </body>
 
 </html>
+
 
 
 
