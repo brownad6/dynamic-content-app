@@ -33,23 +33,20 @@
 </head>
 <body>
 
-  <button class="back-button" onclick="goBack()">← Back</button>
+  <!-- Button goes to index.html -->
+  <a class="back-button" href="index.html">← Back to Home</a>
 
   <h1>Leadership With Kristi</h1>
   <ul id="pdf-list"></ul>
 
   <script>
-    function goBack() {
-      window.history.back();
-    }
-
     const DATA_URL = "https://brownad6.github.io/dynamic-content-app/content.json";
 
     fetch(DATA_URL)
       .then(response => response.json())
       .then(data => {
         const pdfList = document.getElementById('pdf-list');
-        pdfList.innerHTML = ''; // Clear previous
+        pdfList.innerHTML = '';
 
         data.pdfs.forEach(pdf => {
           const li = document.createElement('li');
