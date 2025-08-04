@@ -7,12 +7,13 @@
   ],
   "pdf": "https://brownad6.github.io/dynamic-content-app/pdfs/sample.pdf",
   "links": [
-    "https://www.google.com",
-    "https://www.apple.com",
-    "https://www.openai.com",
-    "pdfs.html"
-  ]
+    { "url": "https://www.google.com", "name": "Google" },
+    { "url": "https://www.apple.com", "name": "Apple" },
+    { "url": "https://www.openai.com", "name": "OpenAI" },
+    { "url": "pdfs.html", "name": "My Content" }
+]
 }
+
 
 
 
