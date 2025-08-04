@@ -1,0 +1,10 @@
+{
+  "text": "Welcome to the dynamic content app powered by GitHub!",
+  "image": "https://via.placeholder.com/600x300",
+  "pdf": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  "links": [
+    "https://www.google.com",
+    "https://www.apple.com",
+    "https://www.openai.com"
+  ]
+}

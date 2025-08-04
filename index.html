@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic iOS App Content</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    a {
+      color: #1a73e8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Text Content</h2>
+    <p id="text-content">Loading...</p>
+  </div>
+
+  <div class="card">
+    <h2>Image</h2>
+    <img id="image-content" src="" alt="Dynamic Image" />
+  </div>
+
+  <div class="card">
+    <h2>PDF Download</h2>
+    <a id="pdf-link" href="#" target="_blank">Download PDF</a>
+  </div>
+
+  <div class="card">
+    <h2>Useful Links</h2>
+    <ul id="link-list"></ul>
+  </div>
+
+  <script>
+    // Replace this with your real hosted JSON URL later
+    const DATA_URL = "https://jsonplaceholder.typicode.com/posts/1"; // temp placeholder
+
+    // Simulate actual structured content
+    const dynamicContent = {
+      text: "Welcome to the dynamic content app!",
+      image: "https://via.placeholder.com/600x300",
+      pdf: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      links: [
+        "https://www.google.com",
+        "https://www.apple.com",
+        "https://www.openai.com"
+      ]
+    };
+
+    // Simulate fetching content (you'll replace with fetch(DATA_URL)... in real use)
+    function loadContent() {
+      // Update text
+      document.getElementById("text-content").innerText = dynamicContent.text;
+
+      // Update image
+      document.getElementById("image-content").src = dynamicContent.image;
+
+      // Update PDF link
+      document.getElementById("pdf-link").href = dynamicContent.pdf;
+
+      // Update links list
+      const linkList = document.getElementById("link-list");
+      dynamicContent.links.forEach(link => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = link;
+        a.target = "_blank";
+        a.innerText = link;
+        li.appendChild(a);
+        linkList.appendChild(li);
+      });
+    }
+
+    // Run on page load
+    loadContent();
+  </script>
+</body>
+</html>
