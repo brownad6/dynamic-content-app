@@ -5,7 +5,16 @@
     "https://brownad6.github.io/dynamic-content-app/images/kristi1.jpg",
     "https://brownad6.github.io/dynamic-content-app/images/kristi2.jpg"
   ],
-  "pdf": "https://brownad6.github.io/dynamic-content-app/pdfs/sample.pdf",
+  "pdfs": [
+    {
+      "title": "Most Important",
+      "url": "https://brownad6.github.io/dynamic-content-app/pdfs/temp.pdf"
+    },
+    {
+      "title": "Registration Information",
+      "url": "https://brownad6.github.io/dynamic-content-app/pdfs/Registration.pdf"
+    }
+  ]
   "links": [
     { "url": "https://www.google.com", "name": "Google" },
     { "url": "https://www.apple.com", "name": "Apple" },
@@ -13,6 +22,7 @@
     { "url": "pdfs.html", "name": "My Content" }
 ]
 }
+
 
 
 
